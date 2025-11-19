@@ -217,7 +217,33 @@ Return = b + c = 2.5 + 1 = 3.5
 
 Side effect: a = 5 + 2.5 = 7.5 → but since a is int, it becomes 7
 
-Answer 3 is 3.5
+Answer 3 is 3.5 (wrong on first attempt) 
+
+
+
+Second explanation for Answer 3:
+a = 5;
+cout << " answer 3 is  " << mystery(a, b, c) << endl;
+
+a = 5, b = 2.5, c = 1
+
+T1 = int, T2 = double
+
+Inside function:
+
+t = 5
+
+a = a + b = 5 + 2.5 = 7.5, but since a is int, it becomes 7 (truncated!)
+
+return (a - t + c) = (7 - 5 + 1) = 3
+
+Return: 3
+
+a becomes 7
+
+Answer 3 is 3
+
+
 
 
 
@@ -233,7 +259,36 @@ Return = b + c = 2.5 + 2.5 = 5.0
 
 Side effect: a = 2 + 2.5 = 4.5 → stored as 4 (int)
 
-Answer 4 is 5
+Answer 4 is 5 (wrong on first attempt)
+
+
+
+
+Second explanation for Answer 4:
+a = 2;
+b = 2.5;
+cout << " answer 4 is  " << mystery(a, b, b) << endl;
+
+a = 2, b = 2.5, and now c = b = 2.5
+
+So T1 = int, T2 = double, and c (the 3rd parameter) is passed as 2.5, but gets converted to int → 2
+
+Inside function:
+
+t = 2
+
+a = a + b = 2 + 2.5 = 4.5 → 4 (truncated)
+
+return (a - t + c) = (4 - 2 + 2) = 4
+
+Return: 4
+
+a becomes 4
+
+Answer 4 is 4
+
+
+
 
 
 
@@ -261,7 +316,128 @@ Return = b + c = 5 + 1 = 6
 
 Side effect: a = 6 + 5 = 11
 
-Answer 5 is 6
+Answer 5 is 6 (wrong on first attempt) 
+
+
+
+
+
+Second explanation of Answer 5:
+cout << " answer 5 is  " << mystery(a, mystery(a, b, b), c) << endl;
+
+
+Before this line:
+
+a = 4 (from previous call)
+
+b = 2.5
+
+c = 1
+
+Compute inner call first:
+mystery(a, b, b) → mystery(a, 2.5, 2.5)
+
+Inner call:
+
+T1 = int, T2 = double, c = 2.5 → becomes 2
+
+t = 4
+
+a = a + b = 4 + 2.5 = 6.5 → 6
+
+return (a - t + c) = (6 - 4 + 2) = 4
+
+Return = 4
+
+a becomes 6
+
+Now outer call:
+mystery(a, 4, c) → mystery(6, 4, 1)
+
+t = 6
+
+a = 6 + 4 = 10
+
+return (10 - 6 + 1) = 5
+
+Answer 5 is 5
+
+
+
+
+
+
+
+
+
+
+GRAPH STRUCTURE:
+
+
+    [0]
+   /   \
+ 4/     \8
+ /       \
+[4]---6---[1]
+ | \       |
+5|  \7     |3
+ |   \     |
+[2]---9---[3]
+
+Edges (with weights):
+(0-4): 4
+(0-1): 8
+(1-2): 3
+(1-4): 6
+(2-3): 9
+(2-4): 5
+(3-4): 7
+
+
+----------------------------------------
+Q17: What is the cost of its minimum spanning tree?
+----------------------------------------
+Using Kruskal's Algorithm (lowest weights first, no cycles):
+
+Selected edges:
+ - (1–2): 3
+ - (0–4): 4
+ - (2–4): 5
+ - (3–4): 7
+
+Total cost = 3 + 4 + 5 + 7 = 19
+
+
+----------------------------------------
+Q18: What is the cost of its maximum spanning tree?
+----------------------------------------
+Using Kruskal’s Algorithm in reverse (highest weights first):
+
+Selected edges:
+ - (2–3): 9
+ - (0–1): 8
+ - (3–4): 7
+ - (1–4): 6
+
+Total cost = 9 + 8 + 7 + 6 = 30
+
+
+----------------------------------------
+Q19: What is the shortest path cost from node 0 to node 2?
+----------------------------------------
+Using Dijkstra’s Algorithm from node 0:
+
+Path 1: 0 → 4 → 2 = 4 + 5 = 9
+Path 2: 0 → 1 → 2 = 8 + 3 = 11
+
+Shortest path: 0 → 4 → 2
+Total cost = 9
+
+
+
+
+
+
 
 
 

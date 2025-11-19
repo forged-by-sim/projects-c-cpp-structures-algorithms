@@ -12,27 +12,27 @@ What is the value of the following expression?
 
 b + c * a
 
-Answer:
+==> Answer is 1
 
 c % 5/2
 
-Answer:
+==> Answer is 1 
 
 -a * c++
 
-Answer:
+==> Answer is -4
 
 tval1 && tval2
 
-Answer: 
+==> Answer is false 
 
 ch += 2
 
-Answer:
+==> Answer is 'd'
 
 
 6. What did D. Ritchie do?
-==> invented C
+==> All of the above 
 
 
 7. What did B. Stroustrup do?
@@ -111,19 +111,56 @@ int main(void)
 
 
 
-Answer 1 is 3
+12. Answer 1 is 3
 
-Answer 2 is 2
+13. Answer 2 is 2
 
-Answer 3 is 3.5
+14. Answer 3 is 3
 
-Answer 4 is 5
+15. Answer 4 is 4
 
-Answer 5 is 6
-
-
+16. Answer 5 is 5
 
 
+
+
+
+
+
+GRAPH STRUCTURE:
+
+
+    [0]
+   /   \
+ 4/     \8
+ /       \
+[4]---6---[1]
+ | \       |
+5|  \7     |3
+ |   \     |
+[2]---9---[3]
+
+Edges (with weights):
+(0-4): 4
+(0-1): 8
+(1-2): 3
+(1-4): 6
+(2-3): 9
+(2-4): 5
+(3-4): 7
+
+
+
+17. What is the cost of its minimum spanning tree?
+==> 19
+
+
+18. What is the cost of its maximum spanning tree?
+==> 30
+
+
+19. What is the shortest path cost from node 0 to node 2?
+==> 9
 
 
 
@@ -178,12 +215,12 @@ sum += *p;
 
 
 
-What does the first line print? 0
+20. What does the first line print? 0
 
-What does the second line print? 5
+21. What does the second line print? 5
 
-What does the third line print? 8
+22. What does the third line print? 8
 
-What does the fourth line print? 10
+23. What does the fourth line print? 10
 
-What does the fifth line print? 11
+24. What does the fifth line print? 11
